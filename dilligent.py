@@ -4,7 +4,7 @@ from selenium.webdriver import ActionChains
 from webdriver_manager import driver
 from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.common.keys import Keys
-import time
+
 
 class Dilligent(unittest.TestCase):
 
@@ -47,7 +47,7 @@ class Dilligent(unittest.TestCase):
         driver.find_element_by_xpath("//button[contains(@aria-label,'Apply')]").click()
         time.sleep(5)
 
-    # testing log in option, now sometimes when i open the site and click sign in, 
+    # testing log in option, now sometimes when i open the site and click sign in,
     # requires only email but sometimes requires email and password
 
     def test_LogIn(self):
@@ -68,7 +68,7 @@ class Dilligent(unittest.TestCase):
         time.sleep(3)
         driver.find_element_by_name("submit_attempt").click()
         time.sleep(5)
-    
+
 
     # testing browsing throung top nav categories and drop down menus
 
@@ -86,6 +86,35 @@ class Dilligent(unittest.TestCase):
         toys = driver.find_element_by_partial_link_text("Entert")
         action.move_to_element(toys).perform()
         time.sleep(5)
+
+
+    def test_register(self):
+        driver = self.driver
+        driver.get("https://www.etsy.com/")
+        time.sleep(10)
+        action = ActionChains(driver)
+        driver.find_element_by_xpath("//button[contains(.,'Sign in')]").click()
+        email = driver.find_element_by_id("join_neu_email_field")
+        time.sleep(3)
+        email.send_keys("raleparkour@gmail.com")
+        time.sleep(5)
+        driver.find_element_by_name("submit_attempt").click()
+        time.sleep(5)
+        first_name = driver.find_element_by_id("join_neu_first_name_field")
+        time.sleep(5)
+        first_name.send_keys("Marko")
+        time.sleep(5)
+        password = driver.find_element_by_id("join_neu_password_field")
+        time.sleep(5)
+        password.send_keys("03071995senscw")
+        time.sleep(5)
+        driver.find_element_by_name("submit_attempt").click()
+        time.sleep(5)
+
+
+
+
+
 
 
 
